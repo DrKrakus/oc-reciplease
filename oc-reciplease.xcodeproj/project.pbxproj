@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		483A6119226C9D9900494D2F /* CustomTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483A6118226C9D9900494D2F /* CustomTabBarViewController.swift */; };
+		483A611D226CA2F300494D2F /* CustomUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483A611C226CA2F300494D2F /* CustomUIButton.swift */; };
+		483A6121226CA56600494D2F /* GoogleSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 483A611F226CA56500494D2F /* GoogleSans-Regular.ttf */; };
+		483A6122226CA56600494D2F /* GoogleSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 483A6120226CA56600494D2F /* GoogleSans-Medium.ttf */; };
+		483A6124226CB9B600494D2F /* IngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483A6123226CB9B600494D2F /* IngredientTableViewCell.swift */; };
+		483A6126226CCF7300494D2F /* RecipesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483A6125226CCF7300494D2F /* RecipesListViewController.swift */; };
+		483A6128226CD33500494D2F /* CustomNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483A6127226CD33500494D2F /* CustomNavViewController.swift */; };
 		4895DEA12268CA4C0067E33C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4895DEA02268CA4C0067E33C /* AppDelegate.swift */; };
 		4895DEA32268CA4C0067E33C /* PostLaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4895DEA22268CA4C0067E33C /* PostLaunchViewController.swift */; };
 		4895DEA62268CA4C0067E33C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4895DEA42268CA4C0067E33C /* Main.storyboard */; };
@@ -15,7 +22,6 @@
 		4895DEB62268CA4E0067E33C /* oc_recipleaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4895DEB52268CA4E0067E33C /* oc_recipleaseTests.swift */; };
 		4895DEC72268CCFA0067E33C /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4895DEC62268CCFA0067E33C /* CustomView.swift */; };
 		489D6CCF226929A800DB1691 /* IngredientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489D6CCE226929A800DB1691 /* IngredientsViewController.swift */; };
-		489D6CD122692BA100DB1691 /* CustomNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489D6CD022692BA100DB1691 /* CustomNavigationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +35,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		483A6118226C9D9900494D2F /* CustomTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarViewController.swift; sourceTree = "<group>"; };
+		483A611C226CA2F300494D2F /* CustomUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIButton.swift; sourceTree = "<group>"; };
+		483A611F226CA56500494D2F /* GoogleSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GoogleSans-Regular.ttf"; sourceTree = "<group>"; };
+		483A6120226CA56600494D2F /* GoogleSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GoogleSans-Medium.ttf"; sourceTree = "<group>"; };
+		483A6123226CB9B600494D2F /* IngredientTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientTableViewCell.swift; sourceTree = "<group>"; };
+		483A6125226CCF7300494D2F /* RecipesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesListViewController.swift; sourceTree = "<group>"; };
+		483A6127226CD33500494D2F /* CustomNavViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavViewController.swift; sourceTree = "<group>"; };
 		4895DE9D2268CA4C0067E33C /* oc-reciplease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "oc-reciplease.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4895DEA02268CA4C0067E33C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4895DEA22268CA4C0067E33C /* PostLaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostLaunchViewController.swift; sourceTree = "<group>"; };
@@ -41,7 +54,6 @@
 		4895DEB72268CA4E0067E33C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4895DEC62268CCFA0067E33C /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		489D6CCE226929A800DB1691 /* IngredientsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsViewController.swift; sourceTree = "<group>"; };
-		489D6CD022692BA100DB1691 /* CustomNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +74,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		483A611E226CA4F600494D2F /* Ressources */ = {
+			isa = PBXGroup;
+			children = (
+				483A6120226CA56600494D2F /* GoogleSans-Medium.ttf */,
+				483A611F226CA56500494D2F /* GoogleSans-Regular.ttf */,
+			);
+			path = Ressources;
+			sourceTree = "<group>";
+		};
 		4895DE942268CA4C0067E33C = {
 			isa = PBXGroup;
 			children = (
@@ -83,12 +104,11 @@
 		4895DE9F2268CA4C0067E33C /* oc-reciplease */ = {
 			isa = PBXGroup;
 			children = (
-				4895DEA02268CA4C0067E33C /* AppDelegate.swift */,
-				4895DEA72268CA4E0067E33C /* Assets.xcassets */,
-				4895DEAC2268CA4E0067E33C /* Info.plist */,
+				483A611E226CA4F600494D2F /* Ressources */,
 				4895DEC22268CB5A0067E33C /* Controller */,
 				4895DEC12268CB480067E33C /* View */,
 				4895DEC02268CB3C0067E33C /* Model */,
+				4895DEAC2268CA4E0067E33C /* Info.plist */,
 			);
 			path = "oc-reciplease";
 			sourceTree = "<group>";
@@ -115,6 +135,9 @@
 				4895DEA42268CA4C0067E33C /* Main.storyboard */,
 				4895DEA92268CA4E0067E33C /* LaunchScreen.storyboard */,
 				4895DEC62268CCFA0067E33C /* CustomView.swift */,
+				483A611C226CA2F300494D2F /* CustomUIButton.swift */,
+				483A6123226CB9B600494D2F /* IngredientTableViewCell.swift */,
+				4895DEA72268CA4E0067E33C /* Assets.xcassets */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -122,9 +145,12 @@
 		4895DEC22268CB5A0067E33C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				4895DEA02268CA4C0067E33C /* AppDelegate.swift */,
 				4895DEA22268CA4C0067E33C /* PostLaunchViewController.swift */,
 				489D6CCE226929A800DB1691 /* IngredientsViewController.swift */,
-				489D6CD022692BA100DB1691 /* CustomNavigationViewController.swift */,
+				483A6118226C9D9900494D2F /* CustomTabBarViewController.swift */,
+				483A6125226CCF7300494D2F /* RecipesListViewController.swift */,
+				483A6127226CD33500494D2F /* CustomNavViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -212,7 +238,9 @@
 			files = (
 				4895DEAB2268CA4E0067E33C /* LaunchScreen.storyboard in Resources */,
 				4895DEA82268CA4E0067E33C /* Assets.xcassets in Resources */,
+				483A6122226CA56600494D2F /* GoogleSans-Medium.ttf in Resources */,
 				4895DEA62268CA4C0067E33C /* Main.storyboard in Resources */,
+				483A6121226CA56600494D2F /* GoogleSans-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,8 +258,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				483A6128226CD33500494D2F /* CustomNavViewController.swift in Sources */,
+				483A6126226CCF7300494D2F /* RecipesListViewController.swift in Sources */,
 				4895DEC72268CCFA0067E33C /* CustomView.swift in Sources */,
-				489D6CD122692BA100DB1691 /* CustomNavigationViewController.swift in Sources */,
+				483A6119226C9D9900494D2F /* CustomTabBarViewController.swift in Sources */,
+				483A6124226CB9B600494D2F /* IngredientTableViewCell.swift in Sources */,
+				483A611D226CA2F300494D2F /* CustomUIButton.swift in Sources */,
 				489D6CCF226929A800DB1691 /* IngredientsViewController.swift in Sources */,
 				4895DEA32268CA4C0067E33C /* PostLaunchViewController.swift in Sources */,
 				4895DEA12268CA4C0067E33C /* AppDelegate.swift in Sources */,
@@ -406,7 +438,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jeromekrakus.oc-reciplease";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -424,7 +456,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jeromekrakus.oc-reciplease";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

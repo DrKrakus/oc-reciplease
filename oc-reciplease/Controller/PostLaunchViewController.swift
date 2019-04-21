@@ -10,11 +10,6 @@ import UIKit
 
 class PostLaunchViewController: UIViewController {
 
-    // Set the statusbar text color
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-
     // splash icon view
     var iconView = UIImageView()
 
@@ -27,7 +22,7 @@ class PostLaunchViewController: UIViewController {
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
+        super.viewDidAppear(false)
         // Launch icon animation
         animateIcon()
     }
@@ -36,8 +31,8 @@ class PostLaunchViewController: UIViewController {
     private func setGradientBG() {
         // Set grandientLayer
         let gradientLayer = CAGradientLayer()
-        let lightOrange = #colorLiteral(red: 0.9921568627, green: 0.6156862745, blue: 0, alpha: 1)
-        let darkOrange = #colorLiteral(red: 0.9803921569, green: 0.3921568627, blue: 0, alpha: 1)
+        let lightOrange = #colorLiteral(red: 1, green: 0.5972495675, blue: 0, alpha: 1)
+        let darkOrange = #colorLiteral(red: 1, green: 0.3406341374, blue: 0, alpha: 1)
         gradientLayer.frame = view.bounds
         gradientLayer.colors = [lightOrange.cgColor, darkOrange.cgColor]
         gradientLayer.startPoint = CGPoint(x: 0, y: 0)
@@ -65,13 +60,13 @@ class PostLaunchViewController: UIViewController {
     }
 
     private func animateIcon() {
-        UIView.animate(withDuration: 1, animations: {
-            self.iconView.transform = CGAffineTransform(translationX: 0, y: 200)
+        UIView.animate(withDuration: 0.5, animations: {
+            self.iconView.transform = CGAffineTransform(translationX: 0, y: -200)
             self.iconView.alpha = 0
         }) { (_) in
             // Go to the next vc
-            let sb = self.storyboard?.instantiateViewController(withIdentifier: "customNavController")
-            let vc = sb as! CustomNavigationViewController
+            let sb = self.storyboard?.instantiateViewController(withIdentifier: "cutomTabBar")
+            let vc = sb as! CustomTabBarViewController
             self.present(vc, animated: true)
         }
     }
