@@ -10,16 +10,8 @@ import UIKit
 
 class PostLaunchViewController: UIViewController {
 
-    // splash icon view
-    var iconView = UIImageView()
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Set gradient background
-        setGradientBG()
-        // Adding splash icon
-        addSplashIcon()
-    }
+    // MARK: Outlets
+    @IBOutlet weak var logo: UIImageView!
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(false)
@@ -27,47 +19,20 @@ class PostLaunchViewController: UIViewController {
         animateIcon()
     }
 
-    // Set grandient background layer
-    private func setGradientBG() {
-        // Set grandientLayer
-        let gradientLayer = CAGradientLayer()
-        let lightOrange = #colorLiteral(red: 1, green: 0.5972495675, blue: 0, alpha: 1)
-        let darkOrange = #colorLiteral(red: 1, green: 0.3406341374, blue: 0, alpha: 1)
-        gradientLayer.frame = view.bounds
-        gradientLayer.colors = [lightOrange.cgColor, darkOrange.cgColor]
-        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
-        gradientLayer.endPoint = CGPoint(x: 1, y: 1)
-
-        // Add gradientLayer
-        view.layer.addSublayer(gradientLayer)
-    }
-
-    // Set the iconView
-    private func addSplashIcon() {
-        iconView.frame = CGRect(x: 0, y: 0, width: 126, height: 126)
-        iconView.image = #imageLiteral(resourceName: "icon-splash")
-
-        view.addSubview(iconView)
-
-        iconView.translatesAutoresizingMaskIntoConstraints = true
-        iconView.center = CGPoint(x: view.bounds.midX, y: view.bounds.midY)
-        iconView.autoresizingMask = [
-            UIView.AutoresizingMask.flexibleLeftMargin,
-            UIView.AutoresizingMask.flexibleRightMargin,
-            UIView.AutoresizingMask.flexibleTopMargin,
-            UIView.AutoresizingMask.flexibleBottomMargin
-        ]
-    }
-
     private func animateIcon() {
-        UIView.animate(withDuration: 0.5, animations: {
-            self.iconView.transform = CGAffineTransform(translationX: 0, y: -200)
-            self.iconView.alpha = 0
+        UIView.animate(withDuration: 0.6, animations: {
+            self.logo.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
         }) { (_) in
-            // Go to the next vc
-            let sb = self.storyboard?.instantiateViewController(withIdentifier: "cutomTabBar")
-            let vc = sb as! CustomTabBarViewController
-            self.present(vc, animated: true)
+            UIView.animate(withDuration: 0.4, animations: {
+                self.logo.transform = CGAffineTransform(scaleX: 10, y: 10)
+                self.logo.alpha = 0
+                self.view.backgroundColor = #colorLiteral(red: 0.9415313601, green: 0.9613165259, blue: 0.9738928676, alpha: 1)
+            }, completion: { (_) in
+                // Go to the next view controller
+                let sb = self.storyboard?.instantiateViewController(withIdentifier: "cutomTabBar")
+                let vc = sb as! CustomTabBarViewController
+                self.present(vc, animated: false)
+            })
         }
     }
 }
