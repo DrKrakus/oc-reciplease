@@ -1,10 +1,10 @@
-platform :ios, '11.0'
+platform :ios, '10.0'
 
 target 'oc-reciplease' do
 
   use_frameworks!
 
-pod 'Alamofire', '~> 5.0.0-beta.5'
+  pod 'Alamofire', '~> 5.0.0-beta.5'
 
   target 'oc-recipleaseTests' do
     inherit! :search_paths

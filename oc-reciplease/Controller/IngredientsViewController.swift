@@ -19,7 +19,7 @@ class IngredientsViewController: UIViewController {
     @IBOutlet weak var searchRecipesButton: CustomUIButton!
     @IBOutlet weak var addIngredientButton: CustomUIButton!
     @IBOutlet weak var clearAllIngredients: CustomUIButton!
-
+    @IBOutlet weak var loaderIndicator: UIActivityIndicatorView!
     
     // MARK: Properties
 
@@ -40,7 +40,25 @@ class IngredientsViewController: UIViewController {
         addTextfield.text = ""
         showUIElements()
     }
+    
+    @IBAction func didTapSearchRecipesButton(_ sender: Any) {
+        // Show loader and hide button
+        searchRecipesButton.isHidden = true
+        loaderIndicator.isHidden = false
+        
+        RecipeService.shared.getRecipes { (success) in
+            // Show button and hide loader
+            self.searchRecipesButton.isHidden = false
+            self.loaderIndicator.isHidden = true
 
+            if success {
+                self.performSegue(withIdentifier: "recipesListSegue", sender: nil)
+            } else {
+                print("Networking error")
+            }
+        }
+    }
+    
     // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -121,18 +139,14 @@ extension IngredientsViewController: UITableViewDelegate, UITableViewDataSource 
         let cellID = tableView.dequeueReusableCell(withIdentifier: "ingredientCell", for: indexPath)
         // Get the ingredient
         let ingredient = Ingredient.shared.ingredients[indexPath.row]
-        let clearView = UIView()
 
         // Check if the cell as the good type
         guard let cell = cellID as? IngredientTableViewCell else {
             return UITableViewCell()
         }
 
-        // Change the background color for cells
-        clearView.backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0)
         // Configure the cell
         cell.configure(with: ingredient)
-        cell.selectedBackgroundView = clearView
         return cell
     }
 }

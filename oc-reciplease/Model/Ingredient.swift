@@ -10,7 +10,7 @@ import Foundation
 
 class Ingredient {
     // Singleton Pattern
-    static let shared = Ingredient()
+    static var shared = Ingredient()
     private init() {}
 
     // Array of ingredient
