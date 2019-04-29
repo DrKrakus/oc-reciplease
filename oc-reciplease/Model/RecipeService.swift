@@ -23,11 +23,14 @@ class RecipeService {
         urlComponents.path = "/v1/api/recipes"
         urlComponents.queryItems = [
             URLQueryItem(name: "_app_id", value: ApiKey.yummlyID),
-            URLQueryItem(name: "_app_key", value: ApiKey.yummlyKey),
-            URLQueryItem(name: "allowedIngredient", value: "cheese"),
-            URLQueryItem(name: "allowedIngredient", value: "tomatoes"),
-            URLQueryItem(name: "allowedIngredient", value: "herbs")
+            URLQueryItem(name: "_app_key", value: ApiKey.yummlyKey)
         ]
+
+        // Adding user ingradient list
+        for ingredient in Ingredient.shared.ingredients {
+            urlComponents.queryItems!.append(URLQueryItem(name: "allowedIngredient",
+                                                          value: ingredient.lowercased()))
+        }
 
         guard let url = urlComponents.url else {
             fatalError("Could not create url from components")
@@ -53,7 +56,7 @@ class RecipeService {
                 do {
                     let JSONrecipes = try JSONDecoder().decode(Recipes.self, from: jsonData)
 
-                    JSONrecipes.matches.forEach({ MatchingRecipes.shared.add(recipe: $0)})
+                    JSONrecipes.matches.forEach({ MatchingRecipes.shared.add($0)})
                     callback(true)
 
                 } catch let err {

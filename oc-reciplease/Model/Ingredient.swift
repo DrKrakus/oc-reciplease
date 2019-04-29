@@ -14,7 +14,7 @@ class Ingredient {
     private init() {}
 
     // Array of ingredient
-    private(set) var ingredients: [String] = []
+    var ingredients: [String] = []
 
     func add(_ ingredient: String) {
         ingredients.append(ingredient)

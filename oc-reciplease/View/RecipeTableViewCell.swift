@@ -23,7 +23,7 @@ class RecipeTableViewCell: UITableViewCell {
 
     func configure(imgURL: String, title: String, ratio: Int, duration: Int) {
         // Change the size of image by modifying the URL
-        let biggerImgUrl = imgURL.replacingOccurrences(of: "=s90", with: "=s300")
+        let biggerImgUrl = imgURL.replacingOccurrences(of: "=s90-c", with: "=s300-c")
 
         // Configure the cell
         self.imageBackground.load(URL(string: biggerImgUrl)!)

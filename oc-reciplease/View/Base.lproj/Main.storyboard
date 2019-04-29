@@ -353,7 +353,31 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="190"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xdr-hj-9up" userLabel="RecipeView" customClass="CustomView" customModule="oc_reciplease" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yaR-df-M49" userLabel="Shadow View" customClass="CustomView" customModule="oc_reciplease" customModuleProvider="target">
+                                                    <rect key="frame" x="16" y="0.0" width="343" height="170"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="170" id="chX-q3-4Ar"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                            <real key="value" value="0.20000000000000001"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                            <size key="value" width="0.0" height="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                            <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                            <real key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xdr-hj-9up" userLabel="RecipeView" customClass="CustomView" customModule="oc_reciplease" customModuleProvider="target">
                                                     <rect key="frame" x="16" y="0.0" width="343" height="170"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DwW-6C-VSe">
@@ -364,7 +388,7 @@
                                                         </imageView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ch9-Ug-v1y" userLabel="Mask">
                                                             <rect key="frame" x="0.0" y="0.0" width="343" height="135"/>
-                                                            <color key="backgroundColor" red="0.29907697439193726" green="0.37404811382293701" blue="0.42477953433990479" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KOd-DW-ORo">
                                                             <rect key="frame" x="20" y="102.33333333333333" width="323" height="20.666666666666671"/>
@@ -440,7 +464,7 @@
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                            <real key="value" value="0.0"/>
+                                                            <real key="value" value="10"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
                                                             <real key="value" value="0.20000000000000001"/>
@@ -459,9 +483,13 @@
                                             </subviews>
                                             <color key="backgroundColor" red="0.94153136014938354" green="0.96131652593612671" blue="0.97389286756515503" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="yaR-df-M49" secondAttribute="bottom" constant="20" id="ATl-AZ-6L0"/>
                                                 <constraint firstItem="Xdr-hj-9up" firstAttribute="leading" secondItem="37n-iM-lqh" secondAttribute="leading" constant="16" id="H5A-Bx-FJ2"/>
                                                 <constraint firstItem="Xdr-hj-9up" firstAttribute="top" secondItem="37n-iM-lqh" secondAttribute="top" id="ZQ3-9M-ga7"/>
+                                                <constraint firstItem="yaR-df-M49" firstAttribute="top" secondItem="37n-iM-lqh" secondAttribute="top" id="b6o-VT-gId"/>
                                                 <constraint firstAttribute="bottom" secondItem="Xdr-hj-9up" secondAttribute="bottom" constant="20" id="cRN-yl-a0J"/>
+                                                <constraint firstItem="yaR-df-M49" firstAttribute="leading" secondItem="37n-iM-lqh" secondAttribute="leading" constant="16" id="fAe-VW-ham"/>
+                                                <constraint firstAttribute="trailing" secondItem="yaR-df-M49" secondAttribute="trailing" constant="16" id="wko-wW-KNV"/>
                                                 <constraint firstAttribute="trailing" secondItem="Xdr-hj-9up" secondAttribute="trailing" constant="16" id="wyc-eX-j8F"/>
                                             </constraints>
                                         </tableViewCellContentView>

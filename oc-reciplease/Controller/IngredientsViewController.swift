@@ -52,9 +52,15 @@ class IngredientsViewController: UIViewController {
             self.loaderIndicator.isHidden = true
 
             if success {
+                // Check if matching recipes has been found
+                guard !MatchingRecipes.shared.recipes.isEmpty else {
+                    self.showRecipesNotFoundAlert()
+                    return
+                }
+                // Go to the RecipesListView
                 self.performSegue(withIdentifier: "recipesListSegue", sender: nil)
             } else {
-                print("Networking error")
+                self.showNetworkErrorAlert()
             }
         }
     }
@@ -133,7 +139,7 @@ extension IngredientsViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Ingredient.shared.ingredients.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Get the cell
         let cellID = tableView.dequeueReusableCell(withIdentifier: "ingredientCell", for: indexPath)
@@ -166,7 +172,7 @@ extension IngredientsViewController: UITextFieldDelegate {
             if Ingredient.shared.ingredients.isEmpty {
                 setFridgeToCenter()
             }
-            
+
             return true
         }
 
@@ -175,5 +181,29 @@ extension IngredientsViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         showUIElements()
         return true
+    }
+}
+
+// User Alerts
+extension IngredientsViewController {
+
+    func showRecipesNotFoundAlert() {
+        let alertVC = UIAlertController.init(title: "Oups...",
+                                             message: "No recipes found with your ingredients list",
+                                             preferredStyle: .alert)
+        let action = UIAlertAction.init(title: "OK", style: .default)
+
+        alertVC.addAction(action)
+        present(alertVC, animated: true)
+    }
+
+    func showNetworkErrorAlert() {
+        let alertVC = UIAlertController.init(title: "Network Error",
+                                             message: "Check your network connection and try again",
+                                             preferredStyle: .alert)
+        let action = UIAlertAction.init(title: "OK", style: .default)
+        
+        alertVC.addAction(action)
+        present(alertVC, animated: true)
     }
 }
