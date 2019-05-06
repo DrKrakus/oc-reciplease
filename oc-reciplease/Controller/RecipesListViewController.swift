@@ -46,8 +46,20 @@ extension RecipesListViewController: UITableViewDelegate, UITableViewDataSource 
         cell.configure(imgURL: recipe.imageUrlsBySize.the90,
                        title: recipe.recipeName,
                        ratio: recipe.rating,
-                       duration: recipe.totalTimeInSeconds)
+                       duration: recipe.totalTimeInSeconds,
+                       id: recipe.id)
 
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Current Cell
+        let currentCell = tableView.cellForRow(at: indexPath) as! RecipeTableViewCell
+
+        // Set SelectedRecipe ID
+        SelectedRecipeService.shared.recipeID = currentCell.recipeID
+
+        // Then go to the next View
+        self.performSegue(withIdentifier: "recipeDetailSegue", sender: nil)
     }
 }
