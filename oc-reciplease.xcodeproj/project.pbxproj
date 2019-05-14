@@ -11,6 +11,7 @@
 		2DF265AB3FE3B961DDC2EBE1 /* Pods_oc_reciplease.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72E111624FC1C77FEF16FC44 /* Pods_oc_reciplease.framework */; };
 		4816A8FB22809D1E00D6F910 /* SelectedRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4816A8FA22809D1E00D6F910 /* SelectedRecipe.swift */; };
 		4816A8FD2280A01300D6F910 /* SelectedRecipeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4816A8FC2280A01300D6F910 /* SelectedRecipeService.swift */; };
+		48368E31228ADB4B00146028 /* Reciplease.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 48368E2F228ADB4B00146028 /* Reciplease.xcdatamodeld */; };
 		483A6119226C9D9900494D2F /* CustomTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483A6118226C9D9900494D2F /* CustomTabBarViewController.swift */; };
 		483A611D226CA2F300494D2F /* CustomUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483A611C226CA2F300494D2F /* CustomUIButton.swift */; };
 		483A6121226CA56600494D2F /* GoogleSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 483A611F226CA56500494D2F /* GoogleSans-Regular.ttf */; };
@@ -50,6 +51,7 @@
 		39986D9F63DBF6C2B7ED8CFA /* Pods-oc-reciplease.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-oc-reciplease.debug.xcconfig"; path = "Target Support Files/Pods-oc-reciplease/Pods-oc-reciplease.debug.xcconfig"; sourceTree = "<group>"; };
 		4816A8FA22809D1E00D6F910 /* SelectedRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedRecipe.swift; sourceTree = "<group>"; };
 		4816A8FC2280A01300D6F910 /* SelectedRecipeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedRecipeService.swift; sourceTree = "<group>"; };
+		48368E30228ADB4B00146028 /* Reciplease.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Reciplease.xcdatamodel; sourceTree = "<group>"; };
 		483A6118226C9D9900494D2F /* CustomTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarViewController.swift; sourceTree = "<group>"; };
 		483A611C226CA2F300494D2F /* CustomUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIButton.swift; sourceTree = "<group>"; };
 		483A611F226CA56500494D2F /* GoogleSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GoogleSans-Regular.ttf"; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 				48ADB42B226F7B7C0045D6E9 /* Recipes.swift */,
 				4816A8FA22809D1E00D6F910 /* SelectedRecipe.swift */,
 				48ADB42F226F89E90045D6E9 /* MatchingRecipes.swift */,
+				48368E2F228ADB4B00146028 /* Reciplease.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -405,6 +408,7 @@
 				483A611D226CA2F300494D2F /* CustomUIButton.swift in Sources */,
 				48BB3DC1226E4A4A00435337 /* RecipeService.swift in Sources */,
 				48ADB430226F89E90045D6E9 /* MatchingRecipes.swift in Sources */,
+				48368E31228ADB4B00146028 /* Reciplease.xcdatamodeld in Sources */,
 				484EE5B522807A8800426571 /* RecipeDetailViewController.swift in Sources */,
 				489D6CCF226929A800DB1691 /* IngredientsViewController.swift in Sources */,
 				48ADB42C226F7B7C0045D6E9 /* Recipes.swift in Sources */,
@@ -681,6 +685,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		48368E2F228ADB4B00146028 /* Reciplease.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				48368E30228ADB4B00146028 /* Reciplease.xcdatamodel */,
+			);
+			currentVersion = 48368E30228ADB4B00146028 /* Reciplease.xcdatamodel */;
+			path = Reciplease.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 4895DE952268CA4C0067E33C /* Project object */;
 }

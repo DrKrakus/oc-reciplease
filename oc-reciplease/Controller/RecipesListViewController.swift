@@ -54,7 +54,9 @@ extension RecipesListViewController: UITableViewDelegate, UITableViewDataSource 
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Current Cell
-        let currentCell = tableView.cellForRow(at: indexPath) as! RecipeTableViewCell
+        guard let currentCell = tableView.cellForRow(at: indexPath) as? RecipeTableViewCell else {
+            return
+        }
 
         // Set SelectedRecipe ID
         SelectedRecipeService.shared.recipeID = currentCell.recipeID

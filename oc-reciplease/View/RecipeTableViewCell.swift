@@ -21,8 +21,6 @@ class RecipeTableViewCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
     func configure(imgURL: String, title: String, ratio: Int, duration: Int, id: String) {
