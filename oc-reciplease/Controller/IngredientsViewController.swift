@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class IngredientsViewController: UIViewController {
 
@@ -73,6 +74,31 @@ class IngredientsViewController: UIViewController {
         setLogoInNavBar()
         hideUIElements()
         setFridgeToCenter()
+
+        // delete core data
+//        deleteCoreDataItems()
+    }
+    
+    private func deleteCoreDataItems() {
+        // Fetch request for FavoriteRecipe
+        let request: NSFetchRequest<FavoriteRecipe> = FavoriteRecipe.fetchRequest()
+        
+        // Check for favorite recipes
+        guard let favoriteRecipes = try? AppDelegate.context.fetch(request) else {
+            return
+        }
+        
+        for recipe in favoriteRecipes {
+            AppDelegate.context.delete(recipe)
+            print("Deleting \(recipe)")
+        }
+        
+        do {
+            try AppDelegate.context.save()
+            print("Saving the viewContext")
+        } catch let err {
+            print(err)
+        }
     }
 
     /// Set a logo instead a title in the navigation bar

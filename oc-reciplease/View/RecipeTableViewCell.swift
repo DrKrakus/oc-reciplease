@@ -23,15 +23,27 @@ class RecipeTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 
+    // Configure for matching recipes
     func configure(imgURL: String, title: String, ratio: Int, duration: Int, id: String) {
         // Change the size of image by modifying the URL
         let biggerImgUrl = imgURL.replacingOccurrences(of: "=s90-c", with: "=s360-c")
+        guard let URL = URL(string: biggerImgUrl) else { return }
 
         // Configure the cell
-        self.imageBackground.load(URL(string: biggerImgUrl)!)
+        self.imageBackground.load(URL)
         self.titleLabel.text = title
         self.ratioLabel.text = String(ratio)
         self.durationLabel.text = String(duration / 60) + " min"
         self.recipeID = id
+    }
+
+    // Configure for favoriteRecipe
+    func favoriteConfiguration(imgURL: URL, title: String, ratio: Int16, duration: String, id: String) {
+        // Configure the cell
+        self.titleLabel.text = title
+        self.ratioLabel.text = String(ratio)
+        self.durationLabel.text = duration
+        self.recipeID = id
+        self.imageBackground.load(imgURL)
     }
 }

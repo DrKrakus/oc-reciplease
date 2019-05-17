@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomNavViewController: UINavigationController {
+class CustomNavViewController: UINavigationController, UITabBarControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()

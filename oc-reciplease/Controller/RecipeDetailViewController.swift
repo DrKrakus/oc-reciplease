@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class RecipeDetailViewController: UIViewController {
 
@@ -98,9 +99,13 @@ class RecipeDetailViewController: UIViewController {
         self.recipeLikeLabel.text = String(selectedRecipe.rating)
         self.recipeDurationLabel.text = selectedRecipe.totalTime
         self.recipeTitleLabel.text = selectedRecipe.name
-        self.recipeBGKView.load(URL(string: selectedRecipe.images[0].hostedLargeURL)!)
         self.getDirectionsButton.setCustomButtonStyle()
-
+        // Check for imgURL
+        guard let imgURL = URL(string: selectedRecipe.images[0].hostedLargeURL) else {
+            return
+        }
+        self.recipeBGKView.load(imgURL)
+        
         // Add ingredients line to textView
         for ingredientsLine in selectedRecipe.ingredientLines {
             self.recipeIngredientsTextView.text += "- " + ingredientsLine + "\n"
@@ -113,15 +118,50 @@ class RecipeDetailViewController: UIViewController {
     }
 
     private func addToFavorite() {
-        selectedRecipe!.isFavorite = true
+        guard var selectedRecipe = selectedRecipe else {
+            return
+        }
+
+        // Change the icon's color
+        selectedRecipe.isFavorite = true
         favoriteBarButton.tintColor = #colorLiteral(red: 0.9803922772, green: 0.3921568394, blue: 0, alpha: 1)
-        addToFavoriteAlert()
+
+        // Save the recipe
+        saveToFavoriteRecipe(selectedRecipe)
     }
 
     private func removeToFavorite() {
         selectedRecipe!.isFavorite = nil
         favoriteBarButton.tintColor = #colorLiteral(red: 0.2990769744, green: 0.3740481138, blue: 0.4247795343, alpha: 0.5)
         removeToFavoriteAlert()
+    }
+
+    private func saveToFavoriteRecipe(_ recipe: SelectedRecipe) {
+        // Get favoriteRecipe context
+        let favoriteRecipe = FavoriteRecipe(context: AppDelegate.context)
+
+        // Create the favoriteRecipeObject
+        favoriteRecipe.id = recipe.id
+        favoriteRecipe.imageURL = recipe.images[0].hostedLargeURL
+        favoriteRecipe.ingredientLines = recipe.ingredientLines
+        favoriteRecipe.name = recipe.name
+        favoriteRecipe.rating = Int16(recipe.rating)
+        favoriteRecipe.sourceRecipeURL = recipe.source.sourceRecipeURL
+        favoriteRecipe.totalTime = recipe.totalTime
+
+        // Save of context
+        do {
+            try AppDelegate.context.save()
+            // Show alert
+            successSaveAlert()
+        } catch let err{
+            print(err)
+            // Show alert
+            failSaveAlert()
+            // Reset button style
+            selectedRecipe!.isFavorite = nil
+            favoriteBarButton.tintColor = #colorLiteral(red: 0.2990769744, green: 0.3740481138, blue: 0.4247795343, alpha: 0.5)
+        }
     }
 }
 
@@ -140,9 +180,20 @@ extension RecipeDetailViewController {
         present(alertVC, animated: true)
     }
 
-    private func addToFavoriteAlert() {
+    private func successSaveAlert() {
         // Alert VC
         let alertVC = UIAlertController.init(title: "Cool!", message: "This recipe is now in your favorite list", preferredStyle: .alert)
+        
+        // OK Button
+        let action = UIAlertAction.init(title: "OK", style: .default)
+        
+        alertVC.addAction(action)
+        present(alertVC, animated: true)
+    }
+
+    private func failSaveAlert() {
+        // Alert VC
+        let alertVC = UIAlertController.init(title: "Oups...", message: "Impossible to save this recipe, try again.", preferredStyle: .alert)
         
         // OK Button
         let action = UIAlertAction.init(title: "OK", style: .default)
