@@ -23,6 +23,7 @@ class RecipeDetailViewController: UIViewController {
 
     // MARK: Properties
     var selectedRecipe: SelectedRecipe?
+    var isFavorite = false
     
     // MARK: Actions
     @IBAction func didTapGetDirectionButton(_ sender: Any) {
@@ -39,15 +40,11 @@ class RecipeDetailViewController: UIViewController {
     }
 
     @IBAction func didTapFavoriteButton(_ sender: Any) {
-        // Check for selectedRecipe
-        guard let selectedRecipe = selectedRecipe else {
-            return
-        }
         // If selectedRecipe is tag as favorite
-        if selectedRecipe.isFavorite == nil {
-            addToFavorite()
-        } else {
+        if isFavorite {
             removeToFavorite()
+        } else {
+            addToFavorite()
         }
     }
 
@@ -57,6 +54,11 @@ class RecipeDetailViewController: UIViewController {
         setLogoInNavBar()
         showLoadingView()
         getRecipeDetail()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(false)
+        navigationController?.popViewController(animated: true)
     }
 
     // Set a logo instead a title in the navigation bar
@@ -95,16 +97,17 @@ class RecipeDetailViewController: UIViewController {
     ///
     /// - Parameter selectedRecipe: SelectedRecipe receive from API
     private func setupView(with selectedRecipe: SelectedRecipe) {
-        // Setup the UIView
-        self.recipeLikeLabel.text = String(selectedRecipe.rating)
-        self.recipeDurationLabel.text = selectedRecipe.totalTime
-        self.recipeTitleLabel.text = selectedRecipe.name
-        self.getDirectionsButton.setCustomButtonStyle()
         // Check for imgURL
         guard let imgURL = URL(string: selectedRecipe.images[0].hostedLargeURL) else {
             return
         }
-        self.recipeBGKView.load(imgURL)
+
+        // Setup the UIView
+        recipeLikeLabel.text = String(selectedRecipe.rating)
+        recipeDurationLabel.text = selectedRecipe.totalTime
+        recipeTitleLabel.text = selectedRecipe.name
+        getDirectionsButton.setCustomButtonStyle()
+        recipeBGKView.load(imgURL)
         
         // Add ingredients line to textView
         for ingredientsLine in selectedRecipe.ingredientLines {
@@ -118,36 +121,23 @@ class RecipeDetailViewController: UIViewController {
     }
 
     private func addToFavorite() {
-        guard var selectedRecipe = selectedRecipe else {
-            return
-        }
-
-        // Change the icon's color
-        selectedRecipe.isFavorite = true
-        favoriteBarButton.tintColor = #colorLiteral(red: 0.9803922772, green: 0.3921568394, blue: 0, alpha: 1)
-
-        // Save the recipe
-        saveToFavoriteRecipe(selectedRecipe)
-    }
-
-    private func removeToFavorite() {
-        selectedRecipe!.isFavorite = nil
-        favoriteBarButton.tintColor = #colorLiteral(red: 0.2990769744, green: 0.3740481138, blue: 0.4247795343, alpha: 0.5)
-        removeToFavoriteAlert()
-    }
-
-    private func saveToFavoriteRecipe(_ recipe: SelectedRecipe) {
-        // Get favoriteRecipe context
+        // Check for selectedRecipe
+        guard let selectedRecipe = selectedRecipe else { return }
+        // Tag as favortie
+        isFavorite = true
+        favoriteBarButton.tintColor = #colorLiteral(red: 1, green: 0.3406341374, blue: 0, alpha: 1)
+        
+        // Get context
         let favoriteRecipe = FavoriteRecipe(context: AppDelegate.context)
-
+        
         // Create the favoriteRecipeObject
-        favoriteRecipe.id = recipe.id
-        favoriteRecipe.imageURL = recipe.images[0].hostedLargeURL
-        favoriteRecipe.ingredientLines = recipe.ingredientLines
-        favoriteRecipe.name = recipe.name
-        favoriteRecipe.rating = Int16(recipe.rating)
-        favoriteRecipe.sourceRecipeURL = recipe.source.sourceRecipeURL
-        favoriteRecipe.totalTime = recipe.totalTime
+        favoriteRecipe.id = selectedRecipe.id
+        favoriteRecipe.imageURL = selectedRecipe.images[0].hostedLargeURL
+        favoriteRecipe.ingredientLines = selectedRecipe.ingredientLines
+        favoriteRecipe.name = selectedRecipe.name
+        favoriteRecipe.rating = Int16(selectedRecipe.rating)
+        favoriteRecipe.sourceRecipeURL = selectedRecipe.source.sourceRecipeURL
+        favoriteRecipe.totalTime = selectedRecipe.totalTime
 
         // Save of context
         do {
@@ -159,8 +149,29 @@ class RecipeDetailViewController: UIViewController {
             // Show alert
             failSaveAlert()
             // Reset button style
-            selectedRecipe!.isFavorite = nil
+            isFavorite = false
             favoriteBarButton.tintColor = #colorLiteral(red: 0.2990769744, green: 0.3740481138, blue: 0.4247795343, alpha: 0.5)
+        }
+    }
+
+    private func removeToFavorite() {
+        // Check for selectedRecipe
+        guard let selectedRecipe = selectedRecipe else { return }
+        // Tag as no favorite
+        isFavorite = false
+        favoriteBarButton.tintColor = #colorLiteral(red: 0.2990769744, green: 0.3740481138, blue: 0.4247795343, alpha: 0.5)
+        // Try to delete recipe
+        FavoriteRecipe.deleteRecipe(with: selectedRecipe.id)
+        // Try to save
+        do {
+            try AppDelegate.context.save()
+            // Show Alert
+            removeToFavoriteAlert()
+        } catch let err {
+            print(err)
+            // Reset button style
+            isFavorite = true
+            favoriteBarButton.tintColor = #colorLiteral(red: 1, green: 0.3406341374, blue: 0, alpha: 1)
         }
     }
 }

@@ -39,8 +39,7 @@ class SelectedRecipeService {
     // API Call
     func getDetails(callback: @escaping (Bool, SelectedRecipe?) -> Void) {
         // Alamofire request
-        AF.request(selectedRecipeURL)
-            .responseData { (response) in
+        AF.request(selectedRecipeURL).responseData { (response) in
                 // Check for data
                 guard let jsonData = response.data else {
                     callback(false, nil)

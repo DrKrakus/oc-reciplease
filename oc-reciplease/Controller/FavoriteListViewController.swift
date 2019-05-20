@@ -17,6 +17,7 @@ class FavoriteListViewController: UIViewController {
     
     // MARK: Properties
     var favoriteRecipes = FavoriteRecipe.all
+    var selectedFavoriteRecipe: FavoriteRecipe?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,10 +39,29 @@ class FavoriteListViewController: UIViewController {
     }
     
     private func checkForFavoriteRecipesCount() {
-        guard favoriteRecipes.count > 0 else {
+        
+        if favoriteRecipes.count > 0 {
+            noFavoriteView.isHidden = true
+        } else {
+            noFavoriteView.isHidden = false
+        }
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Check for segue identifier
+        guard segue.identifier == "favoriteRecipeDetailsSegue" else {
             return
         }
-        noFavoriteView.isHidden = true
+        // Check for segue destination
+        guard let detailsVC = segue.destination as? FavoriteRecipeDetailsViewController else {
+            return
+        }
+        // Check for selectedFavoriteRecipe
+        guard let selectedFavoriteRecipe = selectedFavoriteRecipe else {
+            return
+        }
+        // Assign selectedFavoriteRecipe
+        detailsVC.selectedFavoriteRecipe = selectedFavoriteRecipe
     }
 }
 
@@ -76,5 +96,14 @@ extension FavoriteListViewController: UITableViewDelegate, UITableViewDataSource
                                    duration: duration,
                                    id: id)
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Matching FavoriteRecipe
+        let selectedFavoriteRecipe = favoriteRecipes[indexPath.row]
+        // Assign selectedRecipe
+        self.selectedFavoriteRecipe = selectedFavoriteRecipe
+        // Then perform transition
+        performSegue(withIdentifier: "favoriteRecipeDetailsSegue", sender: nil)
     }
 }

@@ -44,8 +44,7 @@ class RecipeService {
         MatchingRecipes.shared.recipes = []
 
         // Alamofire request
-        AF.request(apiURL)
-            .responseData { (response) in
+        AF.request(apiURL).responseData { (response) in
                 // Check for data
                 guard let jsonData = response.data else {
                     callback(false)

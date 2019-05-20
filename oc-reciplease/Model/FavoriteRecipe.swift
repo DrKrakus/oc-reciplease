@@ -16,4 +16,18 @@ class FavoriteRecipe: NSManagedObject {
         guard let favoriteRecipes = try? AppDelegate.context.fetch(request) else { return [] }
         return favoriteRecipes
     }
+
+    static func deleteRecipe(with ID: String) {
+        // Create Request
+        let request: NSFetchRequest<FavoriteRecipe> = FavoriteRecipe.fetchRequest()
+        request.predicate = NSPredicate(format: "id == %@", ID)
+        
+        // Try to delete recipe
+        do {
+            let recipes = try AppDelegate.context.fetch(request)
+            AppDelegate.context.delete(recipes[0])
+        } catch let err {
+            print(err)
+        }
+    }
 }
