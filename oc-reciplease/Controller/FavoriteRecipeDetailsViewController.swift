@@ -44,7 +44,7 @@ class FavoriteRecipeDetailsViewController: UIViewController {
     @IBAction func didTapFavoriteBarButton(_ sender: Any) {
         deleteRecipeToBDD()
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setLogoInNavBar()
@@ -104,14 +104,16 @@ class FavoriteRecipeDetailsViewController: UIViewController {
 extension FavoriteRecipeDetailsViewController {
     private func removeToFavoriteAlert() {
         // Alert VC
-        let alertVC = UIAlertController.init(title: "Well..", message: "This recipe is no longer in your favorite list", preferredStyle: .alert)
-        
+        let alertVC = UIAlertController.init(title: "Well..",
+                                             message: "This recipe is no longer in your favorite list",
+                                             preferredStyle: .alert)
+
         // OK Button
         let action = UIAlertAction(title: "OK", style: .default) { (_) in
             // Close the view
             self.navigationController?.popViewController(animated: true)
         }
-        
+
         alertVC.addAction(action)
         present(alertVC, animated: true)
     }

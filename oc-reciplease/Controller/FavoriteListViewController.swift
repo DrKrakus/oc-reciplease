@@ -10,15 +10,15 @@ import UIKit
 import CoreData
 
 class FavoriteListViewController: UIViewController {
-    
+
     // MARK: Outlets
     @IBOutlet weak var favoriteTableView: UITableView!
     @IBOutlet weak var noFavoriteView: UIView!
-    
+
     // MARK: Properties
     var favoriteRecipes = FavoriteRecipe.all
     var selectedFavoriteRecipe: FavoriteRecipe?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setLogoInNavBar()
@@ -37,9 +37,9 @@ class FavoriteListViewController: UIViewController {
         imageView.contentMode = .scaleAspectFit
         navigationItem.titleView = imageView
     }
-    
+
     private func checkForFavoriteRecipesCount() {
-        
+
         if favoriteRecipes.count > 0 {
             noFavoriteView.isHidden = true
         } else {
@@ -81,20 +81,8 @@ extension FavoriteListViewController: UITableViewDelegate, UITableViewDataSource
         // Get the recipe
         let recipe = favoriteRecipes[indexPath.row]
 
-        // Check for optional values
-        guard let imgURL = recipe.imageURL else { return UITableViewCell() }
-        guard let URL = URL(string: imgURL) else { return UITableViewCell() }
-        guard let title = recipe.name else { return UITableViewCell() }
-        guard let duration = recipe.totalTime else { return UITableViewCell() }
-        guard let id = recipe.id else { return UITableViewCell() }
-        let ratio = recipe.rating
-
         // Configure the cell
-        cell.favoriteConfiguration(imgURL: URL,
-                                   title: title,
-                                   ratio: ratio,
-                                   duration: duration,
-                                   id: id)
+        cell.favoriteConfiguration(with: recipe)
         return cell
     }
 

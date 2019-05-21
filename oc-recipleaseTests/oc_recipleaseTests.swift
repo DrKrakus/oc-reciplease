@@ -2,14 +2,13 @@
 //  oc_recipleaseTests.swift
 //  oc-recipleaseTests
 //
-//  Created by Jerome Krakus on 18/04/2019.
+//  Created by Jerome Krakus on 21/05/2019.
 //  Copyright © 2019 Jerome Krakus. All rights reserved.
 //
 
 import XCTest
-@testable import oc_reciplease
 
-class oc_recipleaseTests: XCTestCase {
+class RecipleaseTests: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.

@@ -28,11 +28,11 @@ class SelectedRecipeService {
             URLQueryItem(name: "_app_id", value: ApiKey.yummlyID),
             URLQueryItem(name: "_app_key", value: ApiKey.yummlyKey)
         ]
-        
+
         guard let url = urlComponents.url else {
             fatalError("Could not create url from components")
         }
-        
+
         return url
     }
 
@@ -45,7 +45,7 @@ class SelectedRecipeService {
                     callback(false, nil)
                     return
                 }
-                
+
                 // Decode data to match SelectedRecipe
                 do {
                     let JSONDetails = try JSONDecoder().decode(SelectedRecipe.self, from: jsonData)

@@ -20,7 +20,7 @@ struct SelectedRecipe: Codable {
 
 struct Image: Codable {
     let hostedLargeURL: String
-    
+
     enum CodingKeys: String, CodingKey {
         case hostedLargeURL = "hostedLargeUrl"
     }
@@ -28,7 +28,7 @@ struct Image: Codable {
 
 struct Source: Codable {
     let sourceRecipeURL: String
-    
+
     enum CodingKeys: String, CodingKey {
         case sourceRecipeURL = "sourceRecipeUrl"
     }

@@ -19,7 +19,7 @@ import UIKit
             layer.cornerRadius = newValue
         }
     }
-    
+
     @IBInspectable
     var shadowOpacity: Float {
         get {
@@ -29,7 +29,7 @@ import UIKit
             layer.shadowOpacity = newValue
         }
     }
-    
+
     @IBInspectable
     var shadowOffset: CGSize {
         get {
@@ -39,7 +39,7 @@ import UIKit
             layer.shadowOffset = newValue
         }
     }
-    
+
     @IBInspectable
     var shadowRadius: CGFloat {
         get {
@@ -49,7 +49,7 @@ import UIKit
             layer.shadowRadius = newValue
         }
     }
-    
+
     @IBInspectable
     var shadowColor: UIColor? {
         get {

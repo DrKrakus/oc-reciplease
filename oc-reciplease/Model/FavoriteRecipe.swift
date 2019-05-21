@@ -21,7 +21,7 @@ class FavoriteRecipe: NSManagedObject {
         // Create Request
         let request: NSFetchRequest<FavoriteRecipe> = FavoriteRecipe.fetchRequest()
         request.predicate = NSPredicate(format: "id == %@", ID)
-        
+
         // Try to delete recipe
         do {
             let recipes = try AppDelegate.context.fetch(request)

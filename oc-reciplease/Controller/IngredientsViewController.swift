@@ -57,12 +57,12 @@ class IngredientsViewController: UIViewController {
         addTextfield.text = ""
         showUIElements()
     }
-    
+
     @IBAction func didTapSearchRecipesButton(_ sender: Any) {
         // Show loader and hide button
         searchRecipesButton.isHidden = true
         loaderIndicator.isHidden = false
-        
+
         RecipeService.shared.getRecipes { (success) in
             // Show button and hide loader
             self.searchRecipesButton.isHidden = false
@@ -81,7 +81,7 @@ class IngredientsViewController: UIViewController {
             }
         }
     }
-    
+
     // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,7 +100,7 @@ class IngredientsViewController: UIViewController {
     }
 
     /// Clear the tableView
-    private func clearTableView(){
+    private func clearTableView() {
         addTextfield.resignFirstResponder()
         Ingredient.shared.clearIngredients()
         ingredientTableView.reloadData()
@@ -222,7 +222,7 @@ extension IngredientsViewController {
                                              message: "Check your network connection and try again",
                                              preferredStyle: .alert)
         let action = UIAlertAction.init(title: "OK", style: .default)
-        
+
         alertVC.addAction(action)
         present(alertVC, animated: true)
     }

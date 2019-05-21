@@ -18,30 +18,32 @@ class RecipeTableViewCell: UITableViewCell {
 
     // MARK: Properties
     var recipeID: String?
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
 
-    // Configure for matching recipes
-    func configure(imgURL: String, title: String, ratio: Int, duration: Int, id: String) {
+    func configure(with recipe: Match) {
         // Change the size of image by modifying the URL
-        let biggerImgUrl = imgURL.replacingOccurrences(of: "=s90-c", with: "=s360-c")
+        let biggerImgUrl = recipe.smallImageUrls[0].replacingOccurrences(of: "=s90", with: "=s360")
         guard let URL = URL(string: biggerImgUrl) else { return }
 
         // Configure the cell
         self.imageBackground.load(URL)
-        self.titleLabel.text = title
-        self.ratioLabel.text = String(ratio)
-        self.durationLabel.text = String(duration / 60) + " min"
-        self.recipeID = id
+        self.titleLabel.text = recipe.recipeName
+        self.ratioLabel.text = String(recipe.rating)
+        self.durationLabel.text = String(recipe.totalTimeInSeconds / 60) + " min"
+        self.recipeID = recipe.id
     }
 
     // Configure for favoriteRecipe
-    func favoriteConfiguration(imgURL: URL, title: String, ratio: Int16, duration: String, id: String) {
+    func favoriteConfiguration(with recipe: FavoriteRecipe) {
+        // Check for optionnal values
+        guard let title = recipe.name else { return }
+        guard let duration = recipe.totalTime else { return }
+        guard let id = recipe.id else { return }
+        guard let imgURLString = recipe.imageURL else { return }
+        guard let imgURL = URL(string: imgURLString) else { return }
+
         // Configure the cell
         self.titleLabel.text = title
-        self.ratioLabel.text = String(ratio)
+        self.ratioLabel.text = String(recipe.rating)
         self.durationLabel.text = duration
         self.recipeID = id
         self.imageBackground.load(imgURL)

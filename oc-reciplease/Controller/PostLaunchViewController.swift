@@ -19,6 +19,7 @@ class PostLaunchViewController: UIViewController {
         animateIcon()
     }
 
+    // swiftlint:disable all
     private func animateIcon() {
         UIView.animate(withDuration: 0.6, animations: {
             self.logo.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
@@ -36,4 +37,3 @@ class PostLaunchViewController: UIViewController {
         }
     }
 }
-

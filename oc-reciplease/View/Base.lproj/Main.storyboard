@@ -517,6 +517,7 @@
                                 <connections>
                                     <outlet property="dataSource" destination="rxf-MF-EKg" id="x4B-DN-NP7"/>
                                     <outlet property="delegate" destination="rxf-MF-EKg" id="6SJ-na-esG"/>
+                                    <outlet property="prefetchDataSource" destination="rxf-MF-EKg" id="ou0-LJ-0F7"/>
                                 </connections>
                             </tableView>
                         </subviews>

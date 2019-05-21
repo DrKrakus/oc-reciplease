@@ -12,7 +12,7 @@ class IngredientTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var crossButton: UIButton!
-    
+
     func configure(with ingredient: String) {
         titleLabel.text! = ingredient
     }

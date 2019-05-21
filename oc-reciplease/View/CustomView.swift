@@ -19,7 +19,7 @@ import UIKit
             layer.cornerRadius = newValue
         }
     }
-    
+
     @IBInspectable
     var shadowOpacity: Float {
         get {
@@ -29,7 +29,7 @@ import UIKit
             layer.shadowOpacity = newValue
         }
     }
-    
+
     @IBInspectable
     var shadowOffset: CGSize {
         get {
@@ -39,7 +39,7 @@ import UIKit
             layer.shadowOffset = newValue
         }
     }
-    
+
     @IBInspectable
     var shadowRadius: CGFloat {
         get {
@@ -49,7 +49,7 @@ import UIKit
             layer.shadowRadius = newValue
         }
     }
-    
+
     @IBInspectable
     var shadowColor: UIColor? {
         get {
@@ -81,7 +81,7 @@ import UIKit
 }
 
 extension UIView {
-    func setCustomButtonStyle(){
+    func setCustomButtonStyle() {
         // Gradient Background
         let gradientLayer = CAGradientLayer()
         let lightOrange = #colorLiteral(red: 1, green: 0.5972495675, blue: 0, alpha: 1)
@@ -93,7 +93,7 @@ extension UIView {
 
         // Corner Radius
         gradientLayer.cornerRadius = CGFloat(28.5)
-        
+
         // Add gradientLayer
         layer.insertSublayer(gradientLayer, at: 0)
     }
@@ -114,7 +114,7 @@ extension UITextField {
 extension UIImageView {
 
     func load(_ url: URL) {
-        DispatchQueue.global().async { [weak self] in
+        DispatchQueue.global(qos: .background).async { [weak self] in
             guard let data = try? Data(contentsOf: url) else {
                 return
             }

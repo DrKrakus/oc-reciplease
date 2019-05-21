@@ -24,7 +24,7 @@ class RecipeDetailViewController: UIViewController {
     // MARK: Properties
     var selectedRecipe: SelectedRecipe?
     var isFavorite = false
-    
+
     // MARK: Actions
     @IBAction func didTapGetDirectionButton(_ sender: Any) {
         // Check for selectedRecipe
@@ -108,7 +108,7 @@ class RecipeDetailViewController: UIViewController {
         recipeTitleLabel.text = selectedRecipe.name
         getDirectionsButton.setCustomButtonStyle()
         recipeBGKView.load(imgURL)
-        
+
         // Add ingredients line to textView
         for ingredientsLine in selectedRecipe.ingredientLines {
             self.recipeIngredientsTextView.text += "- " + ingredientsLine + "\n"
@@ -120,16 +120,17 @@ class RecipeDetailViewController: UIViewController {
         }
     }
 
+    /// Add recipe to coreData
     private func addToFavorite() {
         // Check for selectedRecipe
         guard let selectedRecipe = selectedRecipe else { return }
-        // Tag as favortie
+        // Tag as favorite
         isFavorite = true
         favoriteBarButton.tintColor = #colorLiteral(red: 1, green: 0.3406341374, blue: 0, alpha: 1)
-        
+
         // Get context
         let favoriteRecipe = FavoriteRecipe(context: AppDelegate.context)
-        
+
         // Create the favoriteRecipeObject
         favoriteRecipe.id = selectedRecipe.id
         favoriteRecipe.imageURL = selectedRecipe.images[0].hostedLargeURL
@@ -144,7 +145,7 @@ class RecipeDetailViewController: UIViewController {
             try AppDelegate.context.save()
             // Show alert
             successSaveAlert()
-        } catch let err{
+        } catch let err {
             print(err)
             // Show alert
             failSaveAlert()
@@ -154,6 +155,7 @@ class RecipeDetailViewController: UIViewController {
         }
     }
 
+    /// Remove recipe from coreData
     private func removeToFavorite() {
         // Check for selectedRecipe
         guard let selectedRecipe = selectedRecipe else { return }
@@ -180,7 +182,9 @@ class RecipeDetailViewController: UIViewController {
 extension RecipeDetailViewController {
     private func alertDetailsNotFound() {
         // Alert VC
-        let alertVC = UIAlertController.init(title: "Oups...", message: "Could not found details for this recipe, check your connection and try again.", preferredStyle: .alert)
+        let alertVC = UIAlertController.init(title: "Oups...",
+                                             message: "Could not found details for this recipe, try again.",
+                                             preferredStyle: .alert)
 
         // OK Button
         let action = UIAlertAction.init(title: "OK", style: .default) { (_) in
@@ -193,33 +197,39 @@ extension RecipeDetailViewController {
 
     private func successSaveAlert() {
         // Alert VC
-        let alertVC = UIAlertController.init(title: "Cool!", message: "This recipe is now in your favorite list", preferredStyle: .alert)
-        
+        let alertVC = UIAlertController.init(title: "Cool!",
+                                             message: "This recipe is now in your favorite list",
+                                             preferredStyle: .alert)
+
         // OK Button
         let action = UIAlertAction.init(title: "OK", style: .default)
-        
+
         alertVC.addAction(action)
         present(alertVC, animated: true)
     }
 
     private func failSaveAlert() {
         // Alert VC
-        let alertVC = UIAlertController.init(title: "Oups...", message: "Impossible to save this recipe, try again.", preferredStyle: .alert)
-        
+        let alertVC = UIAlertController.init(title: "Oups...",
+                                             message: "Impossible to save this recipe, try again.",
+                                             preferredStyle: .alert)
+
         // OK Button
         let action = UIAlertAction.init(title: "OK", style: .default)
-        
+
         alertVC.addAction(action)
         present(alertVC, animated: true)
     }
 
     private func removeToFavoriteAlert() {
         // Alert VC
-        let alertVC = UIAlertController.init(title: "Well..", message: "This recipe is no longer in your favorite list", preferredStyle: .alert)
-        
+        let alertVC = UIAlertController.init(title: "Well..",
+                                             message: "This recipe is no longer in your favorite list",
+                                             preferredStyle: .alert)
+
         // OK Button
         let action = UIAlertAction.init(title: "OK", style: .default)
-        
+
         alertVC.addAction(action)
         present(alertVC, animated: true)
     }

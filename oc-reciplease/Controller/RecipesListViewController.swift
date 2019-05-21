@@ -11,7 +11,7 @@ import UIKit
 class RecipesListViewController: UIViewController {
 
     @IBOutlet weak var recipesTableView: UITableView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setLogoInNavBar()
@@ -25,31 +25,38 @@ class RecipesListViewController: UIViewController {
 }
 
 // TableView protocol
-extension RecipesListViewController: UITableViewDelegate, UITableViewDataSource {
-    
+extension RecipesListViewController: UITableViewDelegate, UITableViewDataSource, UITableViewDataSourcePrefetching {
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return MatchingRecipes.shared.recipes.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Get the cell
         let cellID = tableView.dequeueReusableCell(withIdentifier: "recipeCell", for: indexPath)
+        // Check if the cell as the good type
+        guard let cell = cellID as? RecipeTableViewCell else { return UITableViewCell() }
+
         // Get the recipes
         let recipe = MatchingRecipes.shared.recipes[indexPath.row]
-        
-        // Check if the cell as the good type
-        guard let cell = cellID as? RecipeTableViewCell else {
-            return UITableViewCell()
-        }
 
         // Configure the cell
-        cell.configure(imgURL: recipe.imageUrlsBySize.the90,
-                       title: recipe.recipeName,
-                       ratio: recipe.rating,
-                       duration: recipe.totalTimeInSeconds,
-                       id: recipe.id)
+        cell.configure(with: recipe)
 
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        for indexPath in indexPaths {
+            // Get the cell
+            let prefetchCell = tableView.dequeueReusableCell(withIdentifier: "recipeCell", for: indexPath)
+            // Check if the cell as the good type
+            guard let cell = prefetchCell as? RecipeTableViewCell else { return }
+            // Get the matching recipe
+            let recipe = MatchingRecipes.shared.recipes[indexPath.row]
+            // Configure the prefetchCell with matching recipe
+            cell.configure(with: recipe)
+        }
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

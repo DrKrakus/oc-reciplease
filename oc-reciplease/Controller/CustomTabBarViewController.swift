@@ -15,7 +15,7 @@ class CustomTabBarViewController: UITabBarController {
         // Remove the border of navigationBar
         removeBorder()
     }
-    
+
     private func removeBorder() {
         tabBar.shadowImage = UIImage()
         tabBar.backgroundImage = UIImage()
