@@ -11,20 +11,36 @@ import CoreData
 
 class IngredientsViewController: UIViewController {
 
+    // MARK: Outlets
     @IBOutlet weak var fridgeViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var fridgeView: CustomView!
     @IBOutlet weak var headerStackView: UIStackView!
-    // MARK: Outlets
-    @IBOutlet weak var IngredientTableView: UITableView!
+    @IBOutlet weak var ingredientTableView: UITableView!
     @IBOutlet weak var addTextfield: UITextField!
     @IBOutlet weak var searchRecipesButton: CustomUIButton!
     @IBOutlet weak var addIngredientButton: CustomUIButton!
     @IBOutlet weak var clearAllIngredients: CustomUIButton!
     @IBOutlet weak var loaderIndicator: UIActivityIndicatorView!
-    
-    // MARK: Properties
 
-    // MARK: Action
+    // MARK: Actions
+    @IBAction func didTapCrossButton(_ sender: UIButton) {
+        // Delete the row with animation
+        Ingredient.shared.ingredients.remove(at: sender.tag)
+        ingredientTableView.deleteRows(at: [IndexPath(item: sender.tag, section: 0)], with: .fade)
+        // Then after the duration of animation, reload data for matching tag with index
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.ingredientTableView.reloadData()
+        }
+        // Check for ingredients count
+        guard Ingredient.shared.ingredients.count == 0 else {
+            return
+        }
+        // Reset UI position
+        hideUIElements()
+        setFridgeToCenter()
+        addTextfield.resignFirstResponder()
+    }
+
     @IBAction func didTapClearButton(_ sender: Any) {
         clearTableView()
         hideUIElements()
@@ -74,31 +90,6 @@ class IngredientsViewController: UIViewController {
         setLogoInNavBar()
         hideUIElements()
         setFridgeToCenter()
-
-        // delete core data
-//        deleteCoreDataItems()
-    }
-    
-    private func deleteCoreDataItems() {
-        // Fetch request for FavoriteRecipe
-        let request: NSFetchRequest<FavoriteRecipe> = FavoriteRecipe.fetchRequest()
-        
-        // Check for favorite recipes
-        guard let favoriteRecipes = try? AppDelegate.context.fetch(request) else {
-            return
-        }
-        
-        for recipe in favoriteRecipes {
-            AppDelegate.context.delete(recipe)
-            print("Deleting \(recipe)")
-        }
-        
-        do {
-            try AppDelegate.context.save()
-            print("Saving the viewContext")
-        } catch let err {
-            print(err)
-        }
     }
 
     /// Set a logo instead a title in the navigation bar
@@ -112,7 +103,7 @@ class IngredientsViewController: UIViewController {
     private func clearTableView(){
         addTextfield.resignFirstResponder()
         Ingredient.shared.clearIngredients()
-        IngredientTableView.reloadData()
+        ingredientTableView.reloadData()
     }
 
     /// Add ingredient to array
@@ -120,12 +111,12 @@ class IngredientsViewController: UIViewController {
     /// - Parameter ingredient: String
     private func addIngredient(_ ingredient: String) {
         Ingredient.shared.add(ingredient)
-        IngredientTableView.reloadData()
+        ingredientTableView.reloadData()
     }
 
     /// Hide the some of UI
     private func hideUIElements() {
-            self.IngredientTableView.alpha = 0
+            self.ingredientTableView.alpha = 0
             self.headerStackView.alpha = 0
             self.searchRecipesButton.alpha = 0
     }
@@ -133,7 +124,7 @@ class IngredientsViewController: UIViewController {
     /// Show the hidden UI
     private func showUIElements() {
         UIView.animate(withDuration: 0.2) {
-            self.IngredientTableView.alpha = 1
+            self.ingredientTableView.alpha = 1
             self.headerStackView.alpha = 1
             self.searchRecipesButton.alpha = 1
         }
@@ -176,6 +167,9 @@ extension IngredientsViewController: UITableViewDelegate, UITableViewDataSource 
         guard let cell = cellID as? IngredientTableViewCell else {
             return UITableViewCell()
         }
+
+        // Assign tag for crossButton
+        cell.crossButton.tag = indexPath.row
 
         // Configure the cell
         cell.configure(with: ingredient)

@@ -243,19 +243,31 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="muD-bI-FEJ" customClass="CustomView" customModule="oc_reciplease" customModuleProvider="target">
                                                     <rect key="frame" x="16" y="0.0" width="343" height="44"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GQk-sy-QMG">
-                                                            <rect key="frame" x="16.000000000000004" y="11.666666666666666" width="40.333333333333343" height="20.666666666666671"/>
-                                                            <fontDescription key="fontDescription" name="GoogleSans-Medium" family="Google Sans" pointSize="16"/>
-                                                            <color key="textColor" red="0.29907697439193726" green="0.37404811382293701" blue="0.42477953433990479" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="Jl9-Bh-QE6">
+                                                            <rect key="frame" x="16" y="11" width="311" height="22"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GQk-sy-QMG">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="40.333333333333336" height="22"/>
+                                                                    <fontDescription key="fontDescription" name="GoogleSans-Medium" family="Google Sans" pointSize="16"/>
+                                                                    <color key="textColor" red="0.29907697439193726" green="0.37404811382293701" blue="0.42477953433990479" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wzu-6h-WMQ">
+                                                                    <rect key="frame" x="295" y="0.0" width="16" height="22"/>
+                                                                    <state key="normal" image="icon-cross"/>
+                                                                    <connections>
+                                                                        <action selector="didTapCrossButton:" destination="k2H-2S-MzK" eventType="touchUpInside" id="WdW-WY-7Vm"/>
+                                                                    </connections>
+                                                                </button>
+                                                            </subviews>
+                                                        </stackView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="GQk-sy-QMG" secondAttribute="trailing" constant="286.67000000000002" id="983-aU-fps"/>
+                                                        <constraint firstItem="Jl9-Bh-QE6" firstAttribute="centerY" secondItem="muD-bI-FEJ" secondAttribute="centerY" id="PV2-iT-jrE"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Jl9-Bh-QE6" secondAttribute="trailing" constant="16" id="Q8U-U8-Bl3"/>
                                                         <constraint firstAttribute="height" constant="44" id="Reg-OC-u5C"/>
-                                                        <constraint firstItem="GQk-sy-QMG" firstAttribute="centerY" secondItem="muD-bI-FEJ" secondAttribute="centerY" id="iMx-3Q-Rcq"/>
-                                                        <constraint firstItem="GQk-sy-QMG" firstAttribute="leading" secondItem="muD-bI-FEJ" secondAttribute="leading" constant="16" id="vt7-LC-dVt"/>
+                                                        <constraint firstItem="Jl9-Bh-QE6" firstAttribute="leading" secondItem="muD-bI-FEJ" secondAttribute="leading" constant="16" id="qw4-AM-iFN"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -285,6 +297,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="crossButton" destination="Wzu-6h-WMQ" id="RAr-9X-FRy"/>
                                             <outlet property="titleLabel" destination="GQk-sy-QMG" id="5fB-Oy-FnC"/>
                                         </connections>
                                     </tableViewCell>
@@ -318,13 +331,13 @@
                     <tabBarItem key="tabBarItem" title="" image="icon-tab-search" id="2fi-5I-Fwh"/>
                     <navigationItem key="navigationItem" id="Ose-OL-lHw"/>
                     <connections>
-                        <outlet property="IngredientTableView" destination="u5d-Tb-d3L" id="Sim-23-6Gg"/>
                         <outlet property="addIngredientButton" destination="231-SJ-ycg" id="aa6-XO-vAG"/>
                         <outlet property="addTextfield" destination="bFA-se-2gd" id="ECG-bS-fpy"/>
                         <outlet property="clearAllIngredients" destination="rJB-3J-Hoh" id="6nd-Ui-t8a"/>
                         <outlet property="fridgeView" destination="s01-84-jqk" id="tg0-dI-jaJ"/>
                         <outlet property="fridgeViewTopConstraint" destination="daW-Rg-NjK" id="05W-7l-qPi"/>
                         <outlet property="headerStackView" destination="UbK-yS-PWV" id="xna-ug-ENl"/>
+                        <outlet property="ingredientTableView" destination="u5d-Tb-d3L" id="G9o-AL-g8F"/>
                         <outlet property="loaderIndicator" destination="85O-SA-lA7" id="Qen-cB-H5b"/>
                         <outlet property="searchRecipesButton" destination="2k8-BA-ajJ" id="kxg-J2-Mjh"/>
                         <segue destination="rxf-MF-EKg" kind="show" identifier="recipesListSegue" id="OLT-2R-mwi"/>
@@ -962,16 +975,16 @@
                                 <rect key="frame" x="0.0" y="88" width="375" height="641"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="0YQ-qi-fR2">
-                                        <rect key="frame" x="100.66666666666669" y="275.66666666666669" width="174" height="89.666666666666686"/>
+                                        <rect key="frame" x="91" y="275.66666666666669" width="193" height="89.666666666666686"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=":(" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9dp-B2-wsH">
-                                                <rect key="frame" x="71.666666666666671" y="0.0" width="30.666666666666671" height="63.666666666666664"/>
+                                                <rect key="frame" x="81.333333333333343" y="0.0" width="30.666666666666671" height="63.666666666666664"/>
                                                 <fontDescription key="fontDescription" name="GoogleSans-Medium" family="Google Sans" pointSize="50"/>
                                                 <color key="textColor" red="0.29907697439193726" green="0.37404811382293701" blue="0.42477953433990479" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vous n'avez pas de favoris..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A3x-78-b8m">
-                                                <rect key="frame" x="0.0" y="71.666666666666629" width="174" height="18"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You don't have favorite recipes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A3x-78-b8m">
+                                                <rect key="frame" x="0.0" y="71.666666666666629" width="193" height="18"/>
                                                 <fontDescription key="fontDescription" name="GoogleSans-Regular" family="Google Sans" pointSize="14"/>
                                                 <color key="textColor" red="0.29907697439193726" green="0.37404811382293701" blue="0.42477953433990479" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -1214,6 +1227,7 @@
     </scenes>
     <resources>
         <image name="icon-chrono" width="16" height="16"/>
+        <image name="icon-cross" width="16" height="16"/>
         <image name="icon-fav" width="26" height="24"/>
         <image name="icon-like" width="16" height="16"/>
         <image name="icon-splash" width="126" height="125"/>
