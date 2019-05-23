@@ -22,6 +22,7 @@ class RecipeDetailViewController: UIViewController {
     @IBOutlet weak var favoriteBarButton: UIBarButtonItem!
 
     // MARK: Properties
+    let storageManager = StorageManager()
     var selectedRecipe: SelectedRecipe?
     var isFavorite = false
 
@@ -129,7 +130,8 @@ class RecipeDetailViewController: UIViewController {
         favoriteBarButton.tintColor = #colorLiteral(red: 1, green: 0.3406341374, blue: 0, alpha: 1)
 
         // Get context
-        let favoriteRecipe = FavoriteRecipe(context: AppDelegate.context)
+//        let favoriteRecipe = FavoriteRecipe(context: AppDelegate.context)
+        let favoriteRecipe = FavoriteRecipe(context: storageManager.persistentContainer.viewContext)
 
         // Create the favoriteRecipeObject
         favoriteRecipe.id = selectedRecipe.id
@@ -142,7 +144,8 @@ class RecipeDetailViewController: UIViewController {
 
         // Save of context
         do {
-            try AppDelegate.context.save()
+//            try AppDelegate.context.save()
+            try storageManager.persistentContainer.viewContext.save()
             // Show alert
             successSaveAlert()
         } catch let err {
@@ -162,11 +165,12 @@ class RecipeDetailViewController: UIViewController {
         // Tag as no favorite
         isFavorite = false
         favoriteBarButton.tintColor = #colorLiteral(red: 0.2990769744, green: 0.3740481138, blue: 0.4247795343, alpha: 0.5)
-        // Try to delete recipe
-        FavoriteRecipe.deleteRecipe(with: selectedRecipe.id)
+        // Delete recipe
+//        FavoriteRecipe.deleteRecipe(with: selectedRecipe.id)
+        storageManager.deleteRecipe(with: selectedRecipe.id)
         // Try to save
         do {
-            try AppDelegate.context.save()
+            try storageManager.persistentContainer.viewContext.save()
             // Show Alert
             removeToFavoriteAlert()
         } catch let err {

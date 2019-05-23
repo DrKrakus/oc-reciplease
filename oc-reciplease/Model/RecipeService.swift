@@ -39,6 +39,7 @@ class RecipeService {
         return url
     }
 
+    /// Get recipes list from apiURL
     func getRecipes(callback: @escaping (Bool) -> Void) {
         // Reset the recipes list
         MatchingRecipes.shared.recipes = []
@@ -54,10 +55,9 @@ class RecipeService {
                 // Decode data to match Recipes
                 do {
                     let JSONrecipes = try JSONDecoder().decode(Recipes.self, from: jsonData)
-
-                    JSONrecipes.matches.forEach({ MatchingRecipes.shared.add($0)})
+                    // Add json match to MatchingRecipes array
+                    JSONrecipes.matches.forEach({ MatchingRecipes.shared.recipes.append($0)})
                     callback(true)
-
                 } catch let err {
                     print(err)
                     callback(false)

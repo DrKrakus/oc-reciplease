@@ -16,7 +16,7 @@ class FavoriteListViewController: UIViewController {
     @IBOutlet weak var noFavoriteView: UIView!
 
     // MARK: Properties
-    var favoriteRecipes = FavoriteRecipe.all
+    var favoriteRecipes = StorageManager().fetchAll()
     var selectedFavoriteRecipe: FavoriteRecipe?
 
     override func viewDidLoad() {
@@ -27,7 +27,7 @@ class FavoriteListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         // Get the new array
-        favoriteRecipes = FavoriteRecipe.all
+        favoriteRecipes = StorageManager().fetchAll()
         favoriteTableView.reloadData()
         checkForFavoriteRecipesCount()
     }

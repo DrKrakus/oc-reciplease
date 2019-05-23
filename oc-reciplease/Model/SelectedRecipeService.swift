@@ -50,7 +50,6 @@ class SelectedRecipeService {
                 do {
                     let JSONDetails = try JSONDecoder().decode(SelectedRecipe.self, from: jsonData)
                     callback(true, JSONDetails)
-
                 } catch let err {
                     print(err)
                     callback(false, nil)

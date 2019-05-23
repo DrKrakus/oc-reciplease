@@ -102,7 +102,7 @@ class IngredientsViewController: UIViewController {
     /// Clear the tableView
     private func clearTableView() {
         addTextfield.resignFirstResponder()
-        Ingredient.shared.clearIngredients()
+        Ingredient.shared.ingredients.removeAll()
         ingredientTableView.reloadData()
     }
 
@@ -110,7 +110,7 @@ class IngredientsViewController: UIViewController {
     ///
     /// - Parameter ingredient: String
     private func addIngredient(_ ingredient: String) {
-        Ingredient.shared.add(ingredient)
+        Ingredient.shared.ingredients.append(ingredient)
         ingredientTableView.reloadData()
     }
 

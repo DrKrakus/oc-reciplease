@@ -15,12 +15,4 @@ class Ingredient {
 
     // Array of ingredient
     var ingredients: [String] = []
-
-    func add(_ ingredient: String) {
-        ingredients.append(ingredient)
-    }
-
-    func clearIngredients() {
-        ingredients.removeAll()
-    }
 }

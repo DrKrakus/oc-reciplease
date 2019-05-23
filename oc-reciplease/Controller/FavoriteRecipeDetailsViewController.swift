@@ -22,6 +22,7 @@ class FavoriteRecipeDetailsViewController: UIViewController {
 
     /// MARK: Properties
     var selectedFavoriteRecipe: FavoriteRecipe!
+    let storageManager = StorageManager()
 
     /// MARK: Actions
     @IBAction func didTapGetDirectionButton(_ sender: Any) {
@@ -88,10 +89,10 @@ class FavoriteRecipeDetailsViewController: UIViewController {
             return
         }
         // Try to delete recipe
-        FavoriteRecipe.deleteRecipe(with: recipeID)
+        storageManager.deleteRecipe(with: recipeID)
         // Try to save
         do {
-            try AppDelegate.context.save()
+            try storageManager.persistentContainer.viewContext.save()
             // Show Alert
             removeToFavoriteAlert()
         } catch let err {

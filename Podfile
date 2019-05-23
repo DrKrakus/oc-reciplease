@@ -9,7 +9,10 @@ target 'oc-reciplease' do
 
   target 'oc-recipleaseTests' do
     inherit! :search_paths
-    # Pods for testing
+
+    pod 'OHHTTPStubs'
+    pod 'OHHTTPStubs/Swift'
+
   end
 
 end

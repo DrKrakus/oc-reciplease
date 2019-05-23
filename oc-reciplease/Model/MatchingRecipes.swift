@@ -14,8 +14,4 @@ class MatchingRecipes {
     private init() {}
 
     var recipes: [Match] = []
-
-    func add(_ recipe: Match) {
-        recipes.append(recipe)
-    }
 }
