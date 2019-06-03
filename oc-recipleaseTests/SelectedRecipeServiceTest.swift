@@ -49,6 +49,25 @@ class SelectedRecipeServiceTest: XCTestCase {
         waitForExpectations(timeout: 1.0, handler: nil)
     }
 
+    func testSelectedRecipeServiceWithNoData() {
+        let notConnectedError = NSError(domain: NSURLErrorDomain, code: URLError.notConnectedToInternet.rawValue)
+        SelectedRecipeService.shared.recipeID = "ID"
+        // Stub for RecipeService path
+        stub(condition: isHost("api.yummly.com")) { (_) -> OHHTTPStubsResponse in
+            return OHHTTPStubsResponse(error: notConnectedError)
+        }
+        // Expectation
+        let exp = expectation(description: "Alamofire request expectation")
+        SelectedRecipeService.shared.getDetails { (success, selectedRecipe) in
+            guard success else {
+                XCTAssertTrue(selectedRecipe == nil)
+                exp.fulfill()
+                return
+            }
+        }
+        waitForExpectations(timeout: 1.0, handler: nil)
+    }
+
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         OHHTTPStubs.removeAllStubs()

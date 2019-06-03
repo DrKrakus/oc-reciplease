@@ -130,7 +130,6 @@ class RecipeDetailViewController: UIViewController {
         favoriteBarButton.tintColor = #colorLiteral(red: 1, green: 0.3406341374, blue: 0, alpha: 1)
 
         // Get context
-//        let favoriteRecipe = FavoriteRecipe(context: AppDelegate.context)
         let favoriteRecipe = FavoriteRecipe(context: storageManager.persistentContainer.viewContext)
 
         // Create the favoriteRecipeObject
@@ -144,7 +143,6 @@ class RecipeDetailViewController: UIViewController {
 
         // Save of context
         do {
-//            try AppDelegate.context.save()
             try storageManager.persistentContainer.viewContext.save()
             // Show alert
             successSaveAlert()
@@ -166,7 +164,6 @@ class RecipeDetailViewController: UIViewController {
         isFavorite = false
         favoriteBarButton.tintColor = #colorLiteral(red: 0.2990769744, green: 0.3740481138, blue: 0.4247795343, alpha: 0.5)
         // Delete recipe
-//        FavoriteRecipe.deleteRecipe(with: selectedRecipe.id)
         storageManager.deleteRecipe(with: selectedRecipe.id)
         // Try to save
         do {

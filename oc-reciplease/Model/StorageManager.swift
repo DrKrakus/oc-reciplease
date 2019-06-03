@@ -14,7 +14,7 @@ class StorageManager {
 
     let persistentContainer: NSPersistentContainer!
 
-    //Init with dependency
+    //Init for test
     init(container: NSPersistentContainer) {
         self.persistentContainer = container
     }

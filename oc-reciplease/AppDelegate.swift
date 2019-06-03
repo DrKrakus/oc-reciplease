@@ -42,24 +42,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-//    lazy var persistentContainer: NSPersistentContainer = {
-//        let container = NSPersistentContainer(name: "Reciplease")
-//        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-//            if let error = error as NSError? {
-//                fatalError("Unresolved error \(error), \(error.userInfo)")
-//            }
-//        })
-//        return container
-//    }()
-//
-//    static var container: NSPersistentContainer {
-//        return (UIApplication.shared.delegate as! AppDelegate).persistentContainer
-//    }
-//
-//    static var context: NSManagedObjectContext {
-//        return container.viewContext
-//    }
-
     // MARK: - Core Data stack
     
     lazy var persistentContainer: NSPersistentContainer = {

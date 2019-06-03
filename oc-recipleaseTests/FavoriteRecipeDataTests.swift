@@ -40,14 +40,7 @@ class FavoriteRecipeDataTests: XCTestCase {
         storageManager = StorageManager(container: mockPersistantContainer)
     }
 
-    func testFetchAll() {
-        // Check for storageManager
-        guard let storageManager = storageManager else { return }
-
-        // Check for count in favoriteRecipes before the insert
-        var favoriteRecipes = storageManager.fetchAll()
-        XCTAssertEqual(favoriteRecipes.count, 0)
-
+    fileprivate func createFavoriteRecipe(_ storageManager: StorageManager) {
         // Create favoriteRecipe object
         let favoriteRecipe = FavoriteRecipe(context: storageManager.persistentContainer.viewContext)
         favoriteRecipe.id = "id"
@@ -60,6 +53,18 @@ class FavoriteRecipeDataTests: XCTestCase {
 
         // Try to save
         try? storageManager.persistentContainer.viewContext.save()
+    }
+
+    func testFetchAll() {
+        // Check for storageManager
+        guard let storageManager = storageManager else { return }
+
+        // Check for count in favoriteRecipes before the insert
+        var favoriteRecipes = storageManager.fetchAll()
+        XCTAssertEqual(favoriteRecipes.count, 0)
+
+        // Create favoriteRecipe
+        createFavoriteRecipe(storageManager)
 
         // And check count in favoriteRecipes
         favoriteRecipes = storageManager.fetchAll()
@@ -69,7 +74,10 @@ class FavoriteRecipeDataTests: XCTestCase {
     override func tearDown() {
         // Check for storageManager
         guard let storageManager = storageManager else { return }
-        // Delete recipe
+        // Check for favoriteRecipe object
+        guard storageManager.fetchAll().count == 1 else { return }
+        // Then Delete it
         storageManager.deleteRecipe(with: "id")
+        try? storageManager.persistentContainer.viewContext.save()
     }
 }
