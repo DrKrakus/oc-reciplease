@@ -4,7 +4,7 @@
 
 L'API Yummly n'est plus disponible :
 ```
-We’re writing to inform you that the Yummly Recipe API will cease operation effective September 30, 2019. <br /> <br /> Your access to the Yummly Recipe API will continue until September 30, 2019, according to the API Terms in providing ample time for your transition.
+We’re writing to inform you that the Yummly Recipe API will cease operation effective September 30, 2019. Your access to the Yummly Recipe API will continue until September 30, 2019, according to the API Terms in providing ample time for your transition.
 ```
 
 ## Compétences à aquérir
